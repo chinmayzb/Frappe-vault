@@ -53,6 +53,10 @@ class VaultCredentialEntry(Document):
             if days and (self._password_rotated or not self.password_reset_due):
                 self.password_reset_due = add_days(today(), days)
 
+        if self._password_rotated:
+            from frappe.utils import now_datetime
+            self.last_password_rotated_at = now_datetime()
+
     def after_insert(self):
         _create_version(self, "v1 — initial save")
         log_access(self.name, "Edit", extra="Initial create")

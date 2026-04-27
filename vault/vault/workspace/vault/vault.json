@@ -89,6 +89,25 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Configuration",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Vault Settings",
+   "link_count": 0,
+   "link_to": "Vault Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
  "modified": "2026-04-27 00:00:00",
@@ -134,6 +153,13 @@
    "doc_view": "List",
    "label": "Access Log",
    "link_to": "Vault Access Log",
+   "type": "DocType"
+  },
+  {
+   "color": "Purple",
+   "doc_view": "Form",
+   "label": "Settings",
+   "link_to": "Vault Settings",
    "type": "DocType"
   }
  ],

@@ -1,0 +1,122 @@
+{
+ "actions": [],
+ "creation": "2026-04-27 00:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_password_reset",
+  "notify_password_reset_due",
+  "notify_days_before_reset",
+  "col_break_reset",
+  "notify_administrator",
+  "additional_notify_emails",
+  "section_expiry",
+  "notify_account_expiry",
+  "expiry_notify_days_before",
+  "section_access",
+  "notify_on_grant",
+  "notify_on_revoke"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_password_reset",
+   "fieldtype": "Section Break",
+   "label": "Password Reset Notifications",
+   "description": "Control when and who gets notified that a credential's password is due for rotation"
+  },
+  {
+   "default": "1",
+   "fieldname": "notify_password_reset_due",
+   "fieldtype": "Check",
+   "label": "Notify when password reset is due",
+   "description": "Sends an email to the group owner (and any additional recipients below) when Password Reset Due date is today or past"
+  },
+  {
+   "default": "7",
+   "fieldname": "notify_days_before_reset",
+   "fieldtype": "Int",
+   "label": "Also notify X days before due date",
+   "description": "Set to 0 to only notify on the due date itself. Set to 7 to also get a heads-up a week early."
+  },
+  {
+   "fieldname": "col_break_reset",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "notify_administrator",
+   "fieldtype": "Check",
+   "label": "Always notify Administrator",
+   "description": "Include Administrator in every password reset notification regardless of group ownership"
+  },
+  {
+   "fieldname": "additional_notify_emails",
+   "fieldtype": "Small Text",
+   "label": "Additional Recipients",
+   "description": "Comma-separated email addresses to copy on all password reset notifications (e.g. security@company.com, cto@company.com)"
+  },
+  {
+   "fieldname": "section_expiry",
+   "fieldtype": "Section Break",
+   "label": "Account Expiry Notifications",
+   "description": "Notifications for credentials whose account/subscription at the portal is expiring"
+  },
+  {
+   "default": "1",
+   "fieldname": "notify_account_expiry",
+   "fieldtype": "Check",
+   "label": "Notify when account is expiring",
+   "description": "Sends email reminders at 30, 7, and 1 day before the Account Expiry Date"
+  },
+  {
+   "default": "30",
+   "fieldname": "expiry_notify_days_before",
+   "fieldtype": "Int",
+   "label": "Start notifying X days before expiry",
+   "description": "First reminder is sent this many days before expiry. Reminders are always sent at 7 days and 1 day regardless."
+  },
+  {
+   "fieldname": "section_access",
+   "fieldtype": "Section Break",
+   "label": "Access Grant Notifications"
+  },
+  {
+   "default": "0",
+   "fieldname": "notify_on_grant",
+   "fieldtype": "Check",
+   "label": "Notify user when access is granted",
+   "description": "Send an email to the user when a Vault Access Grant is created for them"
+  },
+  {
+   "default": "0",
+   "fieldname": "notify_on_revoke",
+   "fieldtype": "Check",
+   "label": "Notify user when access is revoked",
+   "description": "Send an email to the user when their Vault Access Grant is deactivated"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-04-27 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Vault",
+ "name": "Vault Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "read": 1,
+   "write": 1,
+   "role": "Vault Admin"
+  },
+  {
+   "read": 1,
+   "write": 1,
+   "role": "System Manager"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

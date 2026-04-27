@@ -22,6 +22,8 @@ class VaultAccessGrant(Document):
             user=self.user,
             extra=f"Granted by {self.granted_by} (grant {self.name})",
         )
+        from vault.scheduled import notify_access_granted
+        notify_access_granted(self.credential, self.user)
 
     def on_update(self):
         if self.has_value_changed("is_active") and not self.is_active:
