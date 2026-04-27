@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"header_1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Vault</b></span>\",\"col\":12}},{\"id\":\"shortcut_1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Credential Entry\",\"col\":3}},{\"id\":\"shortcut_2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Credential Group\",\"col\":3}},{\"id\":\"shortcut_3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Access Grant\",\"col\":3}},{\"id\":\"shortcut_4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Access Log\",\"col\":3}},{\"id\":\"header_2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h6\\\">Reports</span>\",\"col\":12}}]",
+ "content": "[{\"id\":\"header_1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Vault</b></span>\",\"col\":12}},{\"id\":\"shortcut_1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Credential Entry\",\"col\":3}},{\"id\":\"shortcut_2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Credential Group\",\"col\":3}},{\"id\":\"shortcut_3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Access Grant\",\"col\":3}},{\"id\":\"shortcut_4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Access Log\",\"col\":3}},{\"id\":\"shortcut_5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Settings\",\"col\":3}},{\"id\":\"header_2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h6\\\">Credentials</span>\",\"col\":12}},{\"id\":\"card_1\",\"type\":\"card\",\"data\":{\"card_name\":\"Credentials\",\"col\":4}},{\"id\":\"card_2\",\"type\":\"card\",\"data\":{\"card_name\":\"Access\",\"col\":4}},{\"id\":\"card_3\",\"type\":\"card\",\"data\":{\"card_name\":\"Audit\",\"col\":4}}]",
  "creation": "2026-04-27 00:00:00",
  "docstatus": 0,
  "doctype": "Workspace",
@@ -16,7 +16,7 @@
    "is_query_report": 0,
    "label": "Credentials",
    "link_count": 0,
-   "onboard": 0,
+   "onboard": 1,
    "type": "Card Break"
   },
   {
@@ -46,7 +46,7 @@
    "is_query_report": 0,
    "label": "Access",
    "link_count": 0,
-   "onboard": 0,
+   "onboard": 1,
    "type": "Card Break"
   },
   {
@@ -57,7 +57,7 @@
    "link_count": 0,
    "link_to": "Vault Access Grant",
    "link_type": "DocType",
-   "onboard": 0,
+   "onboard": 1,
    "type": "Link"
   },
   {
@@ -65,7 +65,7 @@
    "is_query_report": 0,
    "label": "Audit",
    "link_count": 0,
-   "onboard": 0,
+   "onboard": 1,
    "type": "Card Break"
   },
   {
@@ -76,7 +76,7 @@
    "link_count": 0,
    "link_to": "Vault Access Log",
    "link_type": "DocType",
-   "onboard": 0,
+   "onboard": 1,
    "type": "Link"
   },
   {
@@ -87,7 +87,7 @@
    "link_count": 0,
    "link_to": "Vault Credential Version",
    "link_type": "DocType",
-   "onboard": 0,
+   "onboard": 1,
    "type": "Link"
   },
   {
@@ -95,7 +95,7 @@
    "is_query_report": 0,
    "label": "Configuration",
    "link_count": 0,
-   "onboard": 0,
+   "onboard": 1,
    "type": "Card Break"
   },
   {
@@ -106,7 +106,7 @@
    "link_count": 0,
    "link_to": "Vault Settings",
    "link_type": "DocType",
-   "onboard": 0,
+   "onboard": 1,
    "type": "Link"
   }
  ],
@@ -157,7 +157,7 @@
   },
   {
    "color": "Purple",
-   "doc_view": "Form",
+   "doc_view": "List",
    "label": "Settings",
    "link_to": "Vault Settings",
    "type": "DocType"
