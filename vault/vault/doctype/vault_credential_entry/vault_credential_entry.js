@@ -1,5 +1,21 @@
+function toggle_reset_due(frm) {
+    const has_interval = !!frm.doc.password_reset_interval;
+    frm.set_df_property("password_reset_due", "hidden", !has_interval);
+    if (has_interval && frm.doc.password_reset_due) {
+        const due = frappe.datetime.str_to_obj(frm.doc.password_reset_due);
+        const today = frappe.datetime.str_to_obj(frappe.datetime.get_today());
+        const overdue = due < today;
+        frm.get_field("password_reset_due").set_description(
+            overdue
+                ? `<span style="color:var(--red-500)">Overdue — rotate the password now</span>`
+                : `<span style="color:var(--green-500)">On schedule</span>`
+        );
+    }
+}
+
 frappe.ui.form.on("Vault Credential Entry", {
     refresh(frm) {
+        toggle_reset_due(frm);
         if (frm.is_new()) return;
 
         frm.add_custom_button(__("Reveal Password"), () => {
@@ -45,5 +61,9 @@ frappe.ui.form.on("Vault Credential Entry", {
                 },
             });
         }, __("Actions"));
+    },
+
+    password_reset_interval(frm) {
+        toggle_reset_due(frm);
     },
 });

@@ -28,6 +28,11 @@ class VaultCredentialEntry(Document):
         self._old_password_hash = None
         self._password_rotated = False
         if self.is_new():
+            if self.password_reset_interval and not self.password_reset_due:
+                from frappe.utils import add_days, today
+                days = _INTERVAL_DAYS.get(self.password_reset_interval)
+                if days:
+                    self.password_reset_due = add_days(today(), days)
             return
         for field in TRACKED_FIELDS:
             if not self.has_value_changed(field):
@@ -42,10 +47,10 @@ class VaultCredentialEntry(Document):
             else:
                 self._diff_summary.append(f"{field} updated")
 
-        if self._password_rotated and self.password_reset_interval:
+        if self.password_reset_interval:
             from frappe.utils import add_days, today
             days = _INTERVAL_DAYS.get(self.password_reset_interval)
-            if days:
+            if days and (self._password_rotated or not self.password_reset_due):
                 self.password_reset_due = add_days(today(), days)
 
     def after_insert(self):
