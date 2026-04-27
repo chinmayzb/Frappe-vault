@@ -28,6 +28,7 @@ has_permission = {
 scheduler_events = {
     "daily": [
         "vault.scheduled.run_expiry_checker",
+        "vault.scheduled.notify_password_reset_due",
     ],
     "hourly": [
         "vault.scheduled.sweep_expired_grants",

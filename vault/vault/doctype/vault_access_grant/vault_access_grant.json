@@ -11,7 +11,7 @@
   "column_break_g1",
   "granted_by",
   "granted_at",
-  "expires_on",
+  "access_expires_on",
   "section_notes",
   "remarks"
  ],
@@ -60,10 +60,11 @@
    "read_only": 1
   },
   {
-   "fieldname": "expires_on",
+   "fieldname": "access_expires_on",
    "fieldtype": "Date",
-   "label": "Expires On",
-   "in_list_view": 1
+   "label": "Access Expires On",
+   "in_list_view": 1,
+   "description": "Date after which this user's access to the credential is automatically revoked"
   },
   {
    "fieldname": "section_notes",

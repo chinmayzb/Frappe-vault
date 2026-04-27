@@ -4,20 +4,29 @@ from frappe.model.document import Document
 from vault.audit import hash_password, log_access
 
 
-TRACKED_FIELDS = ("portal_name", "portal_url", "username", "password", "notes", "status", "expiry_date")
+TRACKED_FIELDS = ("portal_name", "portal_url", "username", "password", "notes", "status", "account_expiry_date")
+
+_INTERVAL_DAYS = {
+    "30 Days": 30,
+    "60 Days": 60,
+    "90 Days": 90,
+    "180 Days": 180,
+    "1 Year": 365,
+}
 
 
 class VaultCredentialEntry(Document):
     def validate(self):
-        if self.expiry_date:
-            from frappe.utils import getdate, today
-            if getdate(self.expiry_date) < getdate(today()) and self.status == "Active":
+        from frappe.utils import getdate, today
+        if self.account_expiry_date:
+            if getdate(self.account_expiry_date) < getdate(today()) and self.status == "Active":
                 self.status = "Expired"
         self.last_updated_by = frappe.session.user
 
     def before_save(self):
         self._diff_summary = []
         self._old_password_hash = None
+        self._password_rotated = False
         if self.is_new():
             return
         for field in TRACKED_FIELDS:
@@ -29,8 +38,15 @@ class VaultCredentialEntry(Document):
                 )
                 self._old_password_hash = hash_password(old_pw or "")
                 self._diff_summary.append("password changed")
+                self._password_rotated = True
             else:
                 self._diff_summary.append(f"{field} updated")
+
+        if self._password_rotated and self.password_reset_interval:
+            from frappe.utils import add_days, today
+            days = _INTERVAL_DAYS.get(self.password_reset_interval)
+            if days:
+                self.password_reset_due = add_days(today(), days)
 
     def after_insert(self):
         _create_version(self, "v1 — initial save")

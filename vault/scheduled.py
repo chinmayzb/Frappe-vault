@@ -11,7 +11,7 @@ def run_expiry_checker():
     # 1. Mark expired
     expired = frappe.get_all(
         "Vault Credential Entry",
-        filters={"expiry_date": ["<", today_d], "status": "Active"},
+        filters={"account_expiry_date": ["<", today_d], "status": "Active"},
         pluck="name",
     )
     for name in expired:
@@ -22,7 +22,7 @@ def run_expiry_checker():
         target = add_days(today_d, window)
         rows = frappe.get_all(
             "Vault Credential Entry",
-            filters={"expiry_date": target, "status": "Active"},
+            filters={"account_expiry_date": target, "status": "Active"},
             fields=["name", "portal_name", "owner", "credential_group"],
         )
         for row in rows:
@@ -55,11 +55,11 @@ def _resolve_owners(group_name: str, fallback: str) -> list:
 
 
 def sweep_expired_grants():
-    """Hourly — auto-revoke grants past expires_on."""
+    """Hourly — auto-revoke grants past access_expires_on."""
     today_d = getdate(today())
     grants = frappe.get_all(
         "Vault Access Grant",
-        filters={"is_active": 1, "expires_on": ["<", today_d]},
+        filters={"is_active": 1, "access_expires_on": ["<", today_d]},
         fields=["name", "credential", "user"],
     )
     for grant in grants:
@@ -70,6 +70,34 @@ def sweep_expired_grants():
             user=grant.user,
             extra=f"Auto-revoked: grant {grant.name} expired",
         )
+    frappe.db.commit()
+
+
+def notify_password_reset_due():
+    """Daily — alert group owners when a credential's Password Reset Due date is today or overdue."""
+    today_d = getdate(today())
+
+    overdue = frappe.get_all(
+        "Vault Credential Entry",
+        filters={"password_reset_due": ["<=", today_d], "status": "Active"},
+        fields=["name", "portal_name", "owner", "credential_group", "password_reset_due"],
+    )
+    for row in overdue:
+        recipients = _resolve_owners(row.credential_group, row.owner)
+        if not recipients:
+            continue
+        due_label = "today" if row.password_reset_due == today_d else f"on {row.password_reset_due} (overdue)"
+        try:
+            frappe.sendmail(
+                recipients=recipients,
+                subject=f"[Vault] Password rotation due — {row.portal_name}",
+                message=(
+                    f"The password for <b>{row.portal_name}</b> is due for rotation {due_label}.<br>"
+                    f"Please rotate it and save the credential to reset the next due date."
+                ),
+            )
+        except Exception:
+            frappe.log_error(frappe.get_traceback(), "Vault password reset email failed")
     frappe.db.commit()
 
 

@@ -14,7 +14,7 @@ class TestScheduledJobs(IntegrationTestCase):
         frappe.db.set_value(
             "Vault Credential Entry",
             cred.name,
-            {"expiry_date": add_days(today(), -3), "status": "Active"},
+            {"account_expiry_date": add_days(today(), -3), "status": "Active"},
         )
         frappe.db.commit()
         run_expiry_checker()
@@ -36,7 +36,7 @@ class TestScheduledJobs(IntegrationTestCase):
             }
         ).insert(ignore_permissions=True)
         # Bypass validation by writing the past expiry directly
-        frappe.db.set_value("Vault Access Grant", grant.name, "expires_on", add_days(today(), -1))
+        frappe.db.set_value("Vault Access Grant", grant.name, "access_expires_on", add_days(today(), -1))
         frappe.db.commit()
 
         sweep_expired_grants()

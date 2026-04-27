@@ -50,7 +50,7 @@ class TestVaultAccessGrant(IntegrationTestCase):
                     "doctype": "Vault Access Grant",
                     "credential": self.cred.name,
                     "user": self.member.name,
-                    "expires_on": add_days(today(), -1),
+                    "access_expires_on": add_days(today(), -1),
                 }
             ).insert(ignore_permissions=True)
 

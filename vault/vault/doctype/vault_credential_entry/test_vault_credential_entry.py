@@ -73,7 +73,7 @@ class TestVaultCredentialEntry(IntegrationTestCase):
 
     def test_expiry_in_past_marks_expired(self):
         ce = make_credential(self.group.name, portal="Past Portal")
-        ce.expiry_date = "2020-01-01"
+        ce.account_expiry_date = "2020-01-01"
         ce.save(ignore_permissions=True)
         ce.reload()
         self.assertEqual(ce.status, "Expired")

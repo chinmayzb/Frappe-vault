@@ -85,7 +85,7 @@ def copy_username(credential: str) -> dict:
 
 
 @frappe.whitelist()
-def grant_access(credential: str, user: str, expires_on: str = None) -> str:
+def grant_access(credential: str, user: str, access_expires_on: str = None) -> str:
     """Issue an access grant. Vault Manager / Vault Admin only."""
     roles = set(frappe.get_roles(frappe.session.user))
     if not roles & {"System Manager", "Vault Admin", "Vault Manager"}:
@@ -102,7 +102,7 @@ def grant_access(credential: str, user: str, expires_on: str = None) -> str:
             "doctype": "Vault Access Grant",
             "credential": credential,
             "user": user,
-            "expires_on": expires_on or None,
+            "access_expires_on": access_expires_on or None,
             "is_active": 1,
             "granted_by": frappe.session.user,
         }

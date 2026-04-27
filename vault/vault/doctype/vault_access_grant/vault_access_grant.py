@@ -10,10 +10,10 @@ class VaultAccessGrant(Document):
             self.granted_by = frappe.session.user
         if not self.granted_at:
             self.granted_at = frappe.utils.now_datetime()
-        if self.expires_on:
+        if self.access_expires_on:
             from frappe.utils import getdate, today
-            if getdate(self.expires_on) < getdate(today()):
-                frappe.throw("Expiry date cannot be in the past.")
+            if getdate(self.access_expires_on) < getdate(today()):
+                frappe.throw("Access expiry date cannot be in the past.")
 
     def after_insert(self):
         log_access(

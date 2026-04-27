@@ -116,11 +116,11 @@ def user_has_active_grant(credential_name: str, user: str) -> bool:
     grant = frappe.db.get_value(
         "Vault Access Grant",
         grant_name,
-        ["expires_on"],
+        ["access_expires_on"],
         as_dict=True,
     )
-    if grant and grant.expires_on:
+    if grant and grant.access_expires_on:
         from frappe.utils import getdate, today
-        if getdate(grant.expires_on) < getdate(today()):
+        if getdate(grant.access_expires_on) < getdate(today()):
             return False
     return True
