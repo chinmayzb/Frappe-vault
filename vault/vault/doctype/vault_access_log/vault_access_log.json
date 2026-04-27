@@ -1,0 +1,104 @@
+{
+ "actions": [],
+ "autoname": "format:VLT-LOG-{####}-{#####}",
+ "creation": "2026-04-27 00:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "credential",
+  "accessed_by",
+  "action",
+  "timestamp",
+  "column_break_l1",
+  "ip_address",
+  "session_id",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "credential",
+   "fieldtype": "Link",
+   "label": "Credential",
+   "options": "Vault Credential Entry",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "accessed_by",
+   "fieldtype": "Link",
+   "label": "Accessed By",
+   "options": "User",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "action",
+   "fieldtype": "Select",
+   "label": "Action",
+   "options": "View\nReveal\nCopy Username\nCopy Password\nEdit\nDelete\nAccess Granted\nAccess Revoked",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "default": "now",
+   "fieldname": "timestamp",
+   "fieldtype": "Datetime",
+   "label": "Timestamp",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_l1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ip_address",
+   "fieldtype": "Data",
+   "label": "IP Address",
+   "length": 140
+  },
+  {
+   "fieldname": "session_id",
+   "fieldtype": "Data",
+   "label": "Session ID",
+   "length": 140
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "in_create": 1,
+ "links": [],
+ "modified": "2026-04-27 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Vault",
+ "name": "Vault Access Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Vault Admin",
+   "export": 1
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Vault Manager",
+   "export": 1
+  },
+  {
+   "read": 1,
+   "role": "Vault Member"
+  },
+  {
+   "read": 1,
+   "role": "System Manager"
+  }
+ ],
+ "sort_field": "timestamp",
+ "sort_order": "DESC"
+}

@@ -1,0 +1,19 @@
+[project]
+name = "vault"
+authors = [
+    { name = "Codeyard", email = "chinmaybhatk@gmail.com"}
+]
+description = "Enterprise-grade credentials manager for the Frappe ecosystem."
+requires-python = ">=3.10"
+readme = "README.md"
+dynamic = ["version"]
+dependencies = [
+    "cryptography>=41.0.0",
+]
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "vault"
