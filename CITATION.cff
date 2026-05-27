@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "Vault — Credentials Manager for Frappe"
+message: "If you use this software, please cite it using the metadata in this file."
+type: software
+authors:
+  - given-names: Chinmay
+    family-names: Bhatk
+    email: chinmaybhatk@gmail.com
+repository-code: "https://github.com/chinmayzb/Frappe-vault"
+url: "https://github.com/chinmayzb/Frappe-vault"
+abstract: >-
+  A first-class, encrypted credentials manager built natively on the
+  Frappe Framework. Store, share, and audit portal credentials across
+  your organisation — without ever leaving your Frappe desk.
+keywords:
+  - frappe
+  - erpnext
+  - credentials-manager
+  - password-manager
+  - vault
+  - secrets-management
+  - encryption
+license: MIT
+version: "1.0.0"
+date-released: "2026-04-27"
