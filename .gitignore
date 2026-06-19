@@ -1,0 +1,12 @@
+*.pyc
+*.py~
+.DS_Store
+*.egg-info
+dist/
+*.swp
+*.swo
+__pycache__
+*~
+.idea/
+.vscode/
+node_modules/
