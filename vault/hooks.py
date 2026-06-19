@@ -48,6 +48,7 @@ fixtures = [
 ]
 
 after_install = "vault.install.after_install"
+after_migrate = ["vault.install.after_migrate"]
 before_uninstall = "vault.install.before_uninstall"
 
 # Override messages where useful
