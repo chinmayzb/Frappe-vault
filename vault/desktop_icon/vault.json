@@ -1,0 +1,18 @@
+{
+ "app": "vault",
+ "docstatus": 0,
+ "doctype": "Desktop Icon",
+ "hidden": 0,
+ "icon": "lock",
+ "icon_type": "Link",
+ "idx": 0,
+ "label": "Vault",
+ "link_to": "Vault",
+ "link_type": "Workspace Sidebar",
+ "name": "Vault",
+ "owner": "Administrator",
+ "parent_icon": "",
+ "restrict_removal": 0,
+ "roles": [],
+ "standard": 1
+}
