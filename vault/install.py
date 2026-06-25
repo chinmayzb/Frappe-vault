@@ -12,8 +12,22 @@ def after_install():
     create_default_roles()
 
 
+def after_migrate():
+    set_desktop_icon_app()
+
+
 def before_uninstall():
     pass
+
+
+def set_desktop_icon_app():
+    frappe.db.set_value(
+        "Desktop Icon",
+        {"label": "Vault", "app": ("is", "not set")},
+        "app",
+        "vault",
+        update_modified=False,
+    )
 
 
 def create_default_roles():

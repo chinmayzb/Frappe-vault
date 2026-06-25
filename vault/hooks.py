@@ -4,6 +4,7 @@ app_publisher = "Codeyard"
 app_description = "Enterprise-grade credentials manager for the Frappe ecosystem."
 app_email = "chinmaybhatk@gmail.com"
 app_license = "MIT"
+app_logo_url = "/assets/vault/images/vault-logo.svg"
 app_icon = "octicon octicon-lock"
 app_color = "#1a1a1a"
 required_apps = []
@@ -47,6 +48,7 @@ fixtures = [
 ]
 
 after_install = "vault.install.after_install"
+after_migrate = ["vault.install.after_migrate"]
 before_uninstall = "vault.install.before_uninstall"
 
 # Override messages where useful
